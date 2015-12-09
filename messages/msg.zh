@@ -1,2 +1,20 @@
+app=NeverNote
 slogan=不只是笔记
+slogan2=知识管理, 博客, 分享, 协作... 尽在NeverNote
+slogan3=简约而不简单
 homepage=主页
+
+register=注册
+email=电子邮箱
+password=密码
+password_confirm=确认密码
+
+hasAccount=已经有帐号？
+
+inputEmail=请输入电子邮箱
+inputPassword=请输入密码
+inputPasswordConfirm=请再次输入密码
+emailInvalid=邮箱不正确
+passwordInvalid=密码不正确
+passwordNotEqual=两次密码不一致
+ing=正在处理

@@ -1,0 +1,117 @@
+{{template "home/header_box.html" .}}
+
+<section id="box" class="animated fadeInUp">
+    <div>
+        <h1 id="logo">{{msg . "app"}}</h1>
+        <div id="boxForm">
+            <div id="boxHeader">{{msg . "register"}}</div>
+            <form>
+                <div class="alert alert-danger" id="errorMsg"></div>
+                <input id="from" type="hidden" />
+                <div class="form-group">
+                    <label class="control-label" for="email">{{msg . "email"}}</label>
+                    <input type="text" class="form-control" id="email" name="email">
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="password">{{msg . "password"}}</label>
+                    <input type="password" class="form-control" id="password"  name="password">
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="password_confirm">{{msg . "password_confirm"}}</label>
+                    <input type="password" class="form-control" id="password_confirm" name="password_confirm">
+                </div>
+
+                <button id="registerBtn" class="btn btn-success">{{msg . "register"}}</button>
+
+                <div class="line line-dashed"></div>
+
+                <p class="text-muted text-center"><small>{{msg . "hasAccount"}}</small></p>
+
+            </form>
+        </div>
+    </div>
+</section>
+
+
+<!--include bootstrap & jquery js-->
+<script src="/js/jquery-2.0.0.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+<script>
+$(function() {
+    $("#email").focus();
+
+    function showErrorMessage(message, id) {
+        $("#errorMsg").html(message).show();
+        if (id) {
+            $("#" + id).focus();
+        }
+    }
+
+    function hideErrorMessage() {
+        $("#errorMsg").hide();
+    }
+
+
+    $("#registerBtn").click(function(e){
+        e.preventDefault();
+        var email = $("#email").val();
+        var password = $("#password").val();
+        var password_confirm = $("#password_confirm").val();
+
+        if (!email) {
+            showErrorMessage("{{msg . "inputEmail"}}", "email");
+            return;
+        } else {
+            var myreg = /^([a-zA-Z0-9]+[_|\_|\.|\-]?)*[a-zA-Z0-9\-_]+@([a-zA-Z0-9\-]+[_|\_|\.|\-]?)*[a-zA-Z0-9\-]+\.[0-9a-zA-Z]{2,6}$/;
+            if (!myreg.test(email)) {
+                showErrorMessage("{{msg . "emailInvalid"}}", "email");
+                return
+            }
+        }
+
+        if (!password) {
+            showErrorMessage("{{msg . "inputPassword"}}", "password");
+            return;
+        } else {
+            if (password.length < 6) {
+                showErrorMessage("{{msg . "passwordInvalid"}}", password);
+                return;
+            }
+        }
+
+        if (!password_confirm) {
+            showErrorMessage("{{msg . "inputPasswordConfirm"}}", "password_confirm");
+            return;
+        } else {
+            if (password != password_confirm) {
+                showErrorMessage("{{msg . "passwordNotEqual"}}", "password_confirm");
+                return;
+            }
+        }
+
+        $("#registerBtn").html("{{msg . "ing"}}...").addClass("disabled");
+
+        $.post("/doRegister",
+            {
+                email: email,
+                password: password,
+
+            },
+            function(e) {
+                alert("return");
+            }
+        );
+    } );
+
+
+
+});
+</script>
+
+
+
+</body>
+</html>

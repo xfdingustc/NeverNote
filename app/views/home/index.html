@@ -1,42 +1,15 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="zh">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{.title}}</title>
+{{template "home/header.html" .}}
+<section>
+    <div class="header">
+        <h2>Nevernote, {{msg . "slogan"}}</h2>
+        <p>{{msg . "slogan2"}}</p>
+        <p>{{msg . "slogan3"}}</p>
 
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-
-
-<nav id="headerContainer" style="background-color:#fff" class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <!--navigation bar-->
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/index">
-                <img src="/img/logo/nevernote_black.png" title="Nevernote, {{msg $ "slogan"}}"/>
-            </a>
-        </div>
-
-        <div id="navbar" class="navbar-collapse collapse">
-            <div id="lang">
-                <a data-lang="en-us">English</a>
-                <a data-lang="zh-cn">简体中文</a>
-            </div>
-
-            <ul class="nav navbar-nav navbar-left">
-                <li><a href="#">{{msg . "homepage"}}</a></li>
-            </ul>
+        <div>
+            <a class="btn btn-default btn-primary" href="/register">{{msg . "register"}}</a>
         </div>
     </div>
-</nav>
+</section>
 
 <!--include bootstrap & jquery js-->
 <script src="/js/jquery-2.0.0.min.js"></script>

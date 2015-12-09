@@ -1,0 +1,95 @@
+a {
+    cursor: pointer;
+}
+
+#headerContainer {
+    background-color: #fff;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
+    margin: 0;
+}
+
+#headerContainer .navbar-brand {
+    padding: 0;
+    padding-left: 10px;
+    line-height: 60px;
+}
+
+#headerContainer .navbar-nav a {
+    line-height: 60px;
+    padding: 0 10px;
+}
+
+
+.alert {
+    border-radius: 2px;
+    border: none;
+    margin-bottom: 3px;
+    display: none;
+}
+
+section {
+    background-color: #65bd77;
+    color: #e2f3e5;
+    margin-top: 60px;
+}
+
+#navbar {
+    float: right;
+    background: #fff;
+    padding-right: 0;
+}
+
+.header {
+    text-align: center;
+    padding: 30px;
+}
+
+.header p {
+    color: #d0ebd6;
+    font-size: 16px;
+}
+
+.header h2 {
+    font-size: 32px;
+    color: #fff;
+}
+
+#logo {
+    text-align: center;
+}
+
+#box {
+    margin: 0;
+    color: #000;
+    padding-top: 30px;
+}
+
+#boxHeader {
+    border-color: #e8e8e8;
+    color: #333;
+    background-color: #f5f5f6;
+    board-radius: 2px 2px 0 0;
+    padding: 10px 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#boxForm {
+    background-color: #fff;
+    width: 500px;
+    margin: auto;
+    border-radius: 2px;
+}
+
+#boxForm form {
+    padding: 20px 30px;
+    padding-bottom: 30px;
+}
+
+.fadeInUp {
+  -webkit-animation-name: fadeInUp;
+  -moz-animation-name: fadeInUp;
+  -o-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+}

@@ -8,6 +8,8 @@ GET     /                                       Index.Index
 
 # NeverNote home
 GET     /index                                  Index.Index
+GET     /register                               Auth.Register
+POST    /doRegister                             Auth.DoRegister
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
