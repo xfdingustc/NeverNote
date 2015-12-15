@@ -1,12 +1,12 @@
 package info
 
 
-type Re struct  {
+type Response struct  {
 	Ok bool
 	Msg string
 
 }
 
-func NewRe() Re  {
-	return Re{Ok: false}
+func NewResponse() Response  {
+	return Response{Ok: false}
 }

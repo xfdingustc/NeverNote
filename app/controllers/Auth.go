@@ -2,20 +2,31 @@ package controllers
 
 import (
 	"github.com/revel/revel"
-	//"github.com/xfdingustc/NeverNote/app/info"
+	"github.com/xfdingustc/NeverNote/app/info"
+	. "github.com/xfdingustc/NeverNote/app/utils"
+	"strings"
 )
 
 type Auth struct {
-	*revel.Controller
+	BaseController
 }
 
 func (c Auth) DoRegister(email, password string) revel.Result {
-	//re := info.NewRe()
+	response := info.NewResponse()
 
-//	if re.Ok, re.Msg = Vd("email", email); !re.OK {
-//		return c.RenderRe(re);
-//	}
-	return  nil;
+	if response.Ok, response.Msg = Validate("email", email); !response.Ok {
+		return c.RenderResponse(response)
+	}
+
+	if response.Ok, response.Msg = Validate("password", password); !response.Ok {
+		return c.RenderResponse(response)
+	}
+
+	email = strings.ToLower(email)
+
+	//response.Ok, response.Msg := au
+
+	return c.RenderResponse(response)
 }
 
 func (c Auth) Register(from, iu string) revel.Result {

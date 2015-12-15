@@ -3,7 +3,7 @@ package controllers
 import "github.com/revel/revel"
 
 type Index struct {
-	*revel.Controller
+	BaseController
 }
 
 

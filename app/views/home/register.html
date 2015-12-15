@@ -39,7 +39,7 @@
 <script src="/js/jquery-2.0.0.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 
-<script>
+<script type="text/JavaScript">
 $(function() {
     $("#email").focus();
 
@@ -92,7 +92,7 @@ $(function() {
             }
         }
 
-        $("#registerBtn").html("{{msg . "ing"}}...").addClass("disabled");
+//        $("#registerBtn").html("{{msg . "ing"}}...").addClass("disabled");
 
         $.post("/doRegister",
             {
@@ -101,7 +101,11 @@ $(function() {
 
             },
             function(e) {
-                alert("return");
+                if (e.Ok) {
+                    alert("Register OK");
+                } else {
+                    alert("Register failed");
+                }
             }
         );
     } );
