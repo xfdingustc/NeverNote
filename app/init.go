@@ -3,6 +3,7 @@ package app
 import (
 	"github.com/revel/revel"
 	. "github.com/xfdingustc/NeverNote/app/utils"
+	"github.com/xfdingustc/NeverNote/app/service"
 )
 
 func init() {
@@ -28,6 +29,7 @@ func init() {
 	// revel.OnAppStart(FillCache)
 	revel.OnAppStart(func() {
 		InitValidate()
+		service.InitServices()
 	})
 }
 
