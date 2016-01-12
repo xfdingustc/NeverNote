@@ -7,7 +7,7 @@
             <div id="boxHeader">{{msg . "register"}}</div>
             <form>
                 <div class="alert alert-danger" id="errorMsg"></div>
-                <input id="from" type="hidden" />
+                <input id="from" type="hidden" value="{{.from}}"/>
                 <div class="form-group">
                     <label class="control-label" for="email">{{msg . "email"}}</label>
                     <input type="text" class="form-control" id="email" name="email">
@@ -93,19 +93,24 @@ $(function() {
             }
         }
 
-//        $("#registerBtn").html("{{msg . "ing"}}...").addClass("disabled");
+        $("#registerBtn").html("{{msg . "ing"}}...").addClass("disabled");
+
+        var iu = "{{.iu}}";
 
         $.post("/doRegister",
             {
                 email: email,
                 password: password,
+                iu: iu
 
             },
             function(e) {
                 if (e.Ok) {
-                    alert("Register OK");
+                    $("#registerBtn").html("{{msg . "register"}}").removeClass("disabled");
+                    var from = $("#from").val() || "{{.noteUrl}}" || "/note";
+                    location.href = from;
                 } else {
-                    alert("Register failed");
+                    showErrorMessage(e.Msg, "email");
                 }
             }
         );

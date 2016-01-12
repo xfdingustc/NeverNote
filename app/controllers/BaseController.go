@@ -12,6 +12,25 @@ type BaseController struct {
 	*revel.Controller
 }
 
+func (c BaseController) SetLocale() string {
+	locale := string(c.Request.Locale)
+	lang := locale
+
+	if  strings.Contains(locale, "-") {
+		position := strings.Index(locale, "-")
+		lang = locale[0:position]
+	}
+
+	// only Simple Chinese & English are supported.
+	if lang != "zh" && lang != "en" {
+		lang = "en"
+	}
+
+	c.RenderArgs["locale"] = lang
+
+	return lang
+}
+
 
 func (c BaseController) RenderResponse(response info.Response) revel.Result {
 	oldMsg := response.Msg;
