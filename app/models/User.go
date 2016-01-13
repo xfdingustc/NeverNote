@@ -1,6 +1,15 @@
 package models
+import (
+	"gopkg.in/mgo.v2/bson"
+
+	"time"
+)
 
 
 type User struct {
-	UserId string
+	UserId 		bson.ObjectId 	`bson:"_id,omitempty"`
+	Email 		string 			`Email`
+	Username	string			`Username`
+	Password	string			`bson:"Pwd" json:"-"`
+	CreatedTime	time.Time		`CreateTime`
 }

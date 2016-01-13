@@ -4,6 +4,7 @@ import (
 	"github.com/xfdingustc/NeverNote/app/utils"
 	"strings"
 	"gopkg.in/mgo.v2"
+	"fmt"
 )
 
 
@@ -62,4 +63,31 @@ func Init(url, dbname string) {
 
 	Users = Session.DB(dbname).C("users")
 
+}
+
+
+// DAO
+
+func Insert(collection *mgo.Collection, i interface{}) bool {
+	err := collection.Insert(i)
+	return Err(err)
+}
+
+
+func GetByQ(collection *mgo.Collection, q interface{}, i interface{}) {
+	collection.Find(q).One(i)
+}
+
+
+func Err(err error) bool {
+	if err != nil {
+		fmt.Println(err)
+
+		if err.Error() == "not found" {
+			return true
+		}
+
+		return false
+	}
+	return true
 }

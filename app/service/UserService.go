@@ -1,22 +1,39 @@
 package service
 import (
 	"strings"
-	_ "github.com/xfdingustc/NeverNote/app/models"
+	"github.com/xfdingustc/NeverNote/app/models"
+	"gopkg.in/mgo.v2/bson"
+	"github.com/xfdingustc/NeverNote/app/database"
+	"time"
 )
 
 type UserService struct {
 
 }
 
+func (this *UserService) AddUser(user models.User) bool {
+	if user.UserId == "" {
+		user.UserId = bson.NewObjectId()
+	}
 
+	user.CreatedTime = time.Now()
+
+	if user.Email != "" {
+		user.Email = strings.ToLower(user.Email)
+
+
+	}
+
+	return database.Insert(database.Users, user)
+}
 
 
 func (this *UserService) GetUserId(email string) string {
 	email = strings.ToLower(email)
-//	user := models.User{}
-//	db.GetByQ(db.Users, bson.M{"Email": email}, &user)
-//	return user.UserId.Hex()
-	return ""
+	user := models.User{}
+	database.GetByQ(database.Users, bson.M{"Email": email}, &user)
+	return user.UserId.Hex()
+
 }
 
 
