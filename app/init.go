@@ -2,8 +2,9 @@ package app
 
 import (
 	"github.com/revel/revel"
-	. "github.com/xfdingustc/NeverNote/app/utils"
+	"github.com/xfdingustc/NeverNote/app/utils"
 	"github.com/xfdingustc/NeverNote/app/service"
+	"github.com/xfdingustc/NeverNote/app/database"
 )
 
 func init() {
@@ -28,7 +29,8 @@ func init() {
 	// revel.OnAppStart(InitDB)
 	// revel.OnAppStart(FillCache)
 	revel.OnAppStart(func() {
-		InitValidate()
+		database.Init("", "")
+		utils.InitValidate()
 		service.InitServices()
 	})
 }

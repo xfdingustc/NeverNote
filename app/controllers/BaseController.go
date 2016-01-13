@@ -3,7 +3,7 @@ package controllers
 import (
 
 	"github.com/revel/revel"
-	"github.com/xfdingustc/NeverNote/app/info"
+	"github.com/xfdingustc/NeverNote/app/models"
 	"strings"
 )
 
@@ -32,7 +32,7 @@ func (c BaseController) SetLocale() string {
 }
 
 
-func (c BaseController) RenderResponse(response info.Response) revel.Result {
+func (c BaseController) RenderResponse(response models.Response) revel.Result {
 	oldMsg := response.Msg;
 
 	if response.Msg != "" {

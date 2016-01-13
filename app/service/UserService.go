@@ -1,6 +1,7 @@
 package service
 import (
 	"strings"
+	_ "github.com/xfdingustc/NeverNote/app/models"
 )
 
 type UserService struct {
@@ -12,7 +13,7 @@ type UserService struct {
 
 func (this *UserService) GetUserId(email string) string {
 	email = strings.ToLower(email)
-//	user := info.User{}
+//	user := models.User{}
 //	db.GetByQ(db.Users, bson.M{"Email": email}, &user)
 //	return user.UserId.Hex()
 	return ""
