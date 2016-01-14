@@ -42,7 +42,26 @@ func (c Auth) Register(from, iu string) revel.Result {
 	return c.RenderTemplate("home/register.html");
 }
 
+func (c Auth) DoLogin(email, password string) revel.Result {
+//	sessionId := c.Session.Id()
+	msg := ""
+
+	userInfo, err := service.AuthS.Login(email, password)
+	if err != nil {
+		msg = "wrongUsernameOrPassword"
+	} else {
+		c.SetSession(userInfo)
+		return c.RenderJson(models.Response{Ok: true})
+	}
+
+	//response := models.NewResponse()
+
+	return c.RenderJson(models.Response{Ok: false, Msg: c.Message(msg)})
+
+
+}
 
 func (c Auth) Login(email, from string) revel.Result {
+
 	return c.RenderTemplate("home/login.html")
 }

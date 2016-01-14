@@ -60,3 +60,20 @@ func (c BaseController) RenderResponse(response models.Response) revel.Result {
 
 	return c.RenderJson(response);
 }
+
+func (c BaseController) GetSession(key string) string{
+	v, ok := c.Session[key]
+	if !ok {
+		return ""
+	}
+
+	return v
+}
+
+func (c BaseController) SetSession(userInfo models.User) {
+	if userInfo.UserId.Hex() != "" {
+		c.Session["UserId"] = userInfo.UserId.Hex()
+		c.Session["Email"] = userInfo.Email
+		c.Session["Username"] = userInfo.Username
+	}
+}

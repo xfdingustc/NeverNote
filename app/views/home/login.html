@@ -16,7 +16,7 @@
 
                 <div class="form-group">
                     <label class="control-label">{{msg . "password"}}</label>
-                    <input typt="text" class="form-control" id="password" name="password"/>
+                    <input type="password" class="form-control" id="password" name="password"/>
                 </div>
 
                 <div class="clearfix">
@@ -30,6 +30,61 @@
 
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<script>
+$(function() {
+     function showErrorMessage(msg, id) {
+         $("#loginMsg").html(msg).show();
+         if(id) {
+             $("#" + id).focus();
+         }
+     }
+
+    function hideErrorMessage() {
+        $("#loginMsg").hide();
+    }
+
+    $("#loginBtn").click(function(e) {
+        e.preventDefault();
+        var email = $("#email").val();
+        var password = $("#password").val();
+        if (!email) {
+            showErrorMessage("{{msg . "inputEmail"}}", "email");
+            return;
+        }
+
+        if (!password) {
+            showErrorMessage("{{msg . "inputPassword"}}", "password");
+            return;
+        } else {
+            if (password.length < 6) {
+                showErrorMessage("{{msg . "passwordTooShort"}}", "password");
+                return;
+            }
+        }
+
+        $("#loginBtn").html("{{msg . "logining"}}...").addClass("disabled");
+
+        $.post("/doLogin",
+                {
+                    email: email,
+                    password: password,
+
+                },
+                function(response) {
+                    if (response.Ok) {
+                        $("#loginBtn").html("{{msg . "login"}}").removeClass("disabled");
+                        var from = $("#from").val() || "{{.noteUrl}}" || "/note";
+                        location.href = from
+                    } else {
+                        showErrorMessage(response.Msg);
+                    }
+                }
+        );
+    });
+});
+
+</script>
 
 </body>
 </html>

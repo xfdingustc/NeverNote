@@ -18,4 +18,6 @@ inputPasswordConfirm=请再次输入密码
 emailInvalid=邮箱不正确
 passwordInvalid=密码不正确
 passwordNotEqual=两次密码不一致
+passwordTooShort=密码请超过6位
 ing=正在处理
+logining=登录中

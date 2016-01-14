@@ -12,7 +12,7 @@ GET     /index                                  Index.Index
 GET     /register                               Auth.Register
 POST    /doRegister                             Auth.DoRegister
 GET     /login                                  Auth.Login
-
+POST    /doLogin                                Auth.DoLogin
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

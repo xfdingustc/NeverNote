@@ -11,3 +11,11 @@ func GenerateHash(password string) ([]byte, error)  {
 
 	return hashedPassword, nil
 }
+
+func CompareHash(digest []byte, password string) bool {
+	hex := []byte(password)
+	if err := bcrypt.CompareHashAndPassword(digest, hex); err == nil {
+		return true
+	}
+	return false
+}

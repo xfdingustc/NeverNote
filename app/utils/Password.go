@@ -8,3 +8,8 @@ func EncryptPassword(password string) string {
 
 	return string(digest)
 }
+
+func ComparePassword(password, dbPassword string) bool {
+	hex := []byte(dbPassword)
+	return CompareHash(hex, password)
+}

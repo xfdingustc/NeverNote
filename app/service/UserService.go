@@ -44,3 +44,16 @@ func (this *UserService) IsExistsUser(email string) bool {
 	return true
 }
 
+func (this *UserService) GetUserInfoByName(email string) models.User {
+	emailOrUsername := strings.ToLower(email)
+
+	user := models.User{}
+	if strings.Contains(email, "@") {
+		database.GetByQ(database.Users, bson.M{"Email": emailOrUsername}, &user)
+	} else {
+		database.GetByQ(database.Users, bson.M{"Username": emailOrUsername}, &user)
+	}
+
+	return user
+}
+
