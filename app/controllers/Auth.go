@@ -41,3 +41,8 @@ func (c Auth) Register(from, iu string) revel.Result {
 	c.RenderArgs["subTitle"] = c.Message("register");
 	return c.RenderTemplate("home/register.html");
 }
+
+
+func (c Auth) Login(email, from string) revel.Result {
+	return c.RenderTemplate("home/login.html")
+}

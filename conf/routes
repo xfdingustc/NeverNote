@@ -5,11 +5,14 @@
 module:testrunner
 
 GET     /                                       Index.Index
+GET     /note                                   Note.Index
 
 # NeverNote home
 GET     /index                                  Index.Index
 GET     /register                               Auth.Register
 POST    /doRegister                             Auth.DoRegister
+GET     /login                                  Auth.Login
+
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

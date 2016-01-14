@@ -7,13 +7,13 @@
 
         <div>
             <a class="btn btn-default btn-primary" href="/register">{{msg . "register"}}</a>
+            <a class="btn btn-default" href="/login">{{msg . "login"}}</a>
         </div>
     </div>
 </section>
 
 <!--include bootstrap & jquery js-->
-<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
+{{template "common/jquery_cdn.html" .}}
+{{template "common/bootstrap_cdn.html" .}}
 </body>
 </html>

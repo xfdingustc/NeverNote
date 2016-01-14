@@ -1,0 +1,35 @@
+{{template "home/header_box.html" .}}
+
+<section id="box" class="animated fadeInUp">
+
+    <div>
+        <h1 id="logo">{{msg . "app"}}</h1>
+        <div id="boxForm">
+            <div id="boxHeader">{{msg . "login"}}</div>
+            <form>
+                <div class="alert alert-danger" id="loginMsg"></div>
+                <input id="from" type="hidden" value="{{.from}}"/>
+                <div class="form-group">
+                    <label class="control-label">{{msg . "email"}}</label>
+                    <input type="text" class="form-control" id="email" name="email" value={{.email}}/>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">{{msg . "password"}}</label>
+                    <input typt="text" class="form-control" id="password" name="password"/>
+                </div>
+
+                <div class="clearfix">
+                    <button id="loginBtn" class="btn btn-success">{{msg . "login"}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</section>
+
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+</body>
+</html>
