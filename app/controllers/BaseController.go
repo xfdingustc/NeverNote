@@ -5,6 +5,7 @@ import (
 	"github.com/revel/revel"
 	"github.com/xfdingustc/NeverNote/app/models"
 	"strings"
+	"github.com/xfdingustc/NeverNote/app/service"
 )
 
 
@@ -77,3 +78,17 @@ func (c BaseController) SetSession(userInfo models.User) {
 		c.Session["Username"] = userInfo.Username
 	}
 }
+
+func (c BaseController) GetUser() models.User {
+	if userId, ok := c.Session["UserId"]; ok && userId != "" {
+		return service.UserS.GetUserInfo(userId)
+	}
+
+	return models.User{}
+}
+
+//func (c BaseController) GetUserAndBlogUrl() models.UserAndBlogUrl {
+//	if userId, ok := c.Session["UserId"]; ok && userId != "" {
+//		return service.UserS.Get
+//	}
+//}

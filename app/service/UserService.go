@@ -57,3 +57,16 @@ func (this *UserService) GetUserInfoByName(email string) models.User {
 	return user
 }
 
+func (this *UserService) GetUserInfo(userId string) models.User {
+	user := models.User{}
+	database.Get(database.Users, userId, &user)
+	return user
+}
+
+//func (this *UserService) GetUserAndBlogUrl(userId string) models.UserAndBlogUrl {
+//	user := this.GetUserInfo(userId)
+//
+//	userBlog := blogService.GetUserBlog(userId)
+//
+//}
+

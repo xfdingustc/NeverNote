@@ -13,3 +13,9 @@ type User struct {
 	Password	string			`bson:"Pwd" json:"-"`
 	CreatedTime	time.Time		`CreateTime`
 }
+
+type UserAndBlogUrl struct {
+	User
+	BlogUrl 	string			`BlogUrl`
+	PostUrl		string			`PostUrl`
+}

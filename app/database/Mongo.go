@@ -5,6 +5,7 @@ import (
 	"strings"
 	"gopkg.in/mgo.v2"
 	"fmt"
+	"gopkg.in/mgo.v2/bson"
 )
 
 
@@ -67,6 +68,10 @@ func Init(url, dbname string) {
 
 
 // DAO
+
+func Get(collection *mgo.Collection, id string, i interface{}) {
+	collection.FindId(bson.ObjectIdHex(id)).One(i)
+}
 
 func Insert(collection *mgo.Collection, i interface{}) bool {
 	err := collection.Insert(i)
