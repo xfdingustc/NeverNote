@@ -1,7 +1,7 @@
 package controllers
 import (
 	"github.com/revel/revel"
-	"github.com/xfdingustc/NeverNote/app/service"
+
 )
 
 type Note struct {
@@ -21,7 +21,7 @@ func (c Note) Index(noteId, online string) revel.Result {
 		return c.Redirect("/login")
 	}
 
-	notebooks := service.NotebookS.GetNotebooks(userId)
+//	notebooks := service.NotebookS.GetNotebooks(userId)
 
 	return c.RenderTemplate("note/note.html")
 }

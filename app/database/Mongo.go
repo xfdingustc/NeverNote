@@ -11,6 +11,7 @@ import (
 
 var Session *mgo.Session
 var Users *mgo.Collection
+var Notebooks *mgo.Collection
 
 func Init(url, dbname string) {
 	ok := true
@@ -68,6 +69,7 @@ func Init(url, dbname string) {
 
 
 // DAO
+
 
 func Get(collection *mgo.Collection, id string, i interface{}) {
 	collection.FindId(bson.ObjectIdHex(id)).One(i)
