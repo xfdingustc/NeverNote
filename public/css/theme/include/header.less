@@ -1,0 +1,36 @@
+#logo {
+  font-size: 36px;
+}
+
+
+#header {
+  height: @headerHeight;
+  background-color: @headerBgColor;
+  border-bottom: 1px solid @headerBottomBorderColor;
+  color: @headerTextColor;
+
+}
+
+#logo {
+  line-height: 50px;
+  box-sizing: content-box;
+  width: 140px;
+  height: @headerHeight;
+  padding-left: 10px;
+  padding-top: 0px;
+}
+
+#switcher {
+  line-height: 50px;
+  padding-top: 6px;
+  padding-right: 5px;
+  width: 30px;
+  text-align: center;
+  i {
+    font-size: 16px;
+    cursor: pointer;
+    &:hover {
+      color: @hColor;
+    }
+  }
+}

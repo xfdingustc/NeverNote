@@ -19,10 +19,10 @@ GET     /favicon.ico                            404
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/*filepath                       Static.Serve("public")
-GET     /js/*filepath                    Static.Serve("public/js")
-GET     /css/*filepath                   Static.Serve("public/css")
-GET     /img/*filepath                   Static.Serve("public/img")
-
+GET     /js/*filepath                           Static.Serve("public/js")
+GET     /css/*filepath                          Static.Serve("public/css")
+GET     /img/*filepath                          Static.Serve("public/img")
+GET     /font/*filepath                        Static.Serve("public/font")
 # Catch all
 *       /:controller/:action                    :controller.:action
 
