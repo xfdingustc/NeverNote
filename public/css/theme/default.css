@@ -116,6 +116,33 @@
 #addNotebookPlus .fa {
   font-size: 16px;
 }
+#searchNotebookForList {
+  height: 30px;
+  width: 90%;
+  margin: 3px auto;
+  margin-top: 0;
+  border-color: #ebeff2;
+  box-shadow: none;
+}
+#notebookList input,
+#notebookListForSearch input {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  width: 90%;
+  padding-left: 3px;
+  box-shadow: none;
+  background: none;
+  color: #fff;
+}
+#notebookList input:focus,
+#notebookListForSearch input:focus {
+  outline: none !important;
+}
+.folderBody {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: #37485e;
+}
 .folderHeader {
   min-height: 35px;
   line-height: 35px;
@@ -159,4 +186,14 @@
 }
 #switcher span:before {
   context: "\e601";
+}
+#searchNotebookForList {
+  color: #ccc;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #37485e;
+}
+#searchNotebookForList:focus {
+  outline: none !important;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: none;
 }

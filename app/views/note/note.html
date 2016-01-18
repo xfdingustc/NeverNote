@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>Title</title>
     <link href="/css/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <line href="/css/zTreeStyle/zTreeStyle-min.css" rel="stylesheet"/>
     {{template "common/bootstrap_css_cdn.html" .}}
 
     <link href="/css/theme/default.css" type="text/css" rel="stylesheet"/>
@@ -48,6 +49,12 @@
                                 <div id="addNotebookPlus" class="pull-right" title="{{msg . "addNotebook"}}">
                                     <i class="fa fa-plus" title="{{msg . "addNotebook"}}"></i>
                                 </div>
+                            </div>
+
+                            <div class="folderBody">
+                                <input id="searchNotebookForList" type="text" class="form-control" placeholder="{{msg . "searchNotebook"}}"/>
+                                <ul class="ztree" id="notebookList"></ul>
+                                <ul class="ztree" id="notebookListForSearch"></ul>
                             </div>
                         </div>
                     </div>

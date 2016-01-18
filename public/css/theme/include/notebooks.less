@@ -27,6 +27,34 @@
   color: @addNotebookColor;
 }
 
+#searchNotebookForList {
+  height: 30px;
+  width: 90%;
+  margin: 3px auto;
+  margin-top: 0;
+  border-color: #ebeff2;
+  box-shadow: none;
+}
+
+#notebookList input, #notebookListForSearch input {
+  border: @notebookInputBorder;
+  width: 90%;
+  padding-left: 3px;
+  box-shadow: none;
+  background: none;
+  color: @notebookInputColor;
+  &:focus {
+    outline: none !important;
+  }
+}
+
+.folderBody {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: @notebookBodyBgColor;
+}
+
 .folderHeader {
   min-height: @folderHeaderHeight;
   line-height: @folderHeaderHeight;
