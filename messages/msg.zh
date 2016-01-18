@@ -21,3 +21,7 @@ passwordNotEqual=两次密码不一致
 passwordTooShort=密码请超过6位
 ing=正在处理
 logining=登录中
+
+leftHidden=隐藏左侧
+leftShow=展开左侧
+searchNote=搜索笔记

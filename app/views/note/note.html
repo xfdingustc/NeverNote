@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>Title</title>
+    <link href="/css/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet"/>
+    {{template "common/bootstrap_css_cdn.html" .}}
 </head>
 <body>
+
+    <div id="page">
+        <div id="pageInner">
+            <div id="header">
+                <div id="logo" class="pull-left">
+
+                </div>
+
+                <div id="switcher" class="pull-left">
+                    <i class="fa fa-align-justify" title="{{msg . "leftHidden"}}"></i>
+                    <span title="{{msg . "leftShow"}}"></span>
+                </div>
+
+                <div class="pull-left">
+                    <form class="navbar-form form-inline col-lg-2">
+                        <input class="form-control" placeholder="{{msg . "searchNote"}}" type="text" >
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--include bootstrap & jquery js-->
+    {{template "common/jquery_cdn.html" .}}
+    {{template "common/bootstrap_cdn.html" .}}
 
 </body>
 </html>
