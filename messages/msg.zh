@@ -25,3 +25,6 @@ logining=登录中
 leftHidden=隐藏左侧
 leftShow=展开左侧
 searchNote=搜索笔记
+
+notebook=笔记本
+addNotebook=添加笔记本

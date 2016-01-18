@@ -23,11 +23,36 @@
                     <span title="{{msg . "leftShow"}}"></span>
                 </div>
 
-                <div class="pull-left">
-                    <form class="navbar-form form-inline col-lg-2">
-                        <input class="form-control" placeholder="{{msg . "searchNote"}}" type="text" >
+                <div id="searchWrap" class="pull-left">
+                    <form id="searchNote" class="navbar-form form-inline col-lg-2">
+                        <input id="searchNoteInput" type="text" class="form-control" placeholder="{{msg . "searchNote"}}">
                     </form>
                 </div>
+            </div>
+
+            <div id="mainContainer" class="clearfix">
+                <!--<div id="mainMask">-->
+                    <!--<img src="/img/loading-30.gif"/>-->
+                    <!--<br/>-->
+                    <!--<br/>-->
+                    <!--loading...-->
+                <!--</div>-->
+
+                <div id="leftNotebook">
+                    <div id="notebook">
+                        <div id="myNotebooks" class="folderNote opened">
+                            <div class="folderHeader clearfix">
+                                <i class="fa fa-book pull-left fa-left"></i>
+                                <span class="pull-left">{{msg . "notebook"}}</span>
+
+                                <div id="addNotebookPlus" class="pull-right" title="{{msg . "addNotebook"}}">
+                                    <i class="fa fa-plus" title="{{msg . "addNotebook"}}"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

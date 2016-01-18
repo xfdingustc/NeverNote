@@ -1,0 +1,53 @@
+#leftNotebook {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: @leftNotebookWidth;
+}
+
+#notebook, #notebookMin {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  background-color: @notebookBgColor;
+  overflow-y: auto;
+  overflow-x: auto;
+  z-index:2;
+
+}
+
+#addNotebookPlus {
+  padding-right: 10px;
+  .fa {
+    font-size: 16px;
+  }
+  color: @addNotebookColor;
+}
+
+.folderHeader {
+  min-height: @folderHeaderHeight;
+  line-height: @folderHeaderHeight;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  border-color: @folderHeaderBorderColor;
+}
+
+.folderHeader span {
+  display: inline-block;
+  line-height: @folderHeaderHeight;
+  color: @folderHeaderIconColor;
+  font-size: 16px;
+}
+
+.folderHeader .fa-left, .friend-header i.fa {
+  display: inline-block;
+  line-height: @folderHeaderHeight;
+  font-size: 16px;
+  width: @folderHeaderHeight;
+  border-right: 1px solid @folderHeaderBorderColor;
+  text-align: center;
+  color: @folderHeaderIconColor;
+}
