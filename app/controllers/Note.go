@@ -1,7 +1,6 @@
 package controllers
 import (
 	"github.com/revel/revel"
-
 )
 
 type Note struct {
@@ -22,6 +21,8 @@ func (c Note) Index(noteId, online string) revel.Result {
 	}
 
 //	notebooks := service.NotebookS.GetNotebooks(userId)
+
+//	c.RenderArgs["notebooks"] = notebooks
 
 	return c.RenderTemplate("note/note.html")
 }
