@@ -1,6 +1,6 @@
 package service
 import (
-	"github.com/xfdingustc/NeverNote/app/models"
+	. "github.com/xfdingustc/NeverNote/app/models"
 	"gopkg.in/mgo.v2/bson"
 	"github.com/xfdingustc/NeverNote/app/database"
 )
@@ -9,8 +9,8 @@ type NotebookService struct {
 
 }
 
-func (this *NotebookService) GetNotebooks (userId string) models.SubNotebooks {
-	userNotebooks := []models.Notebook{}
+func (this *NotebookService) GetNotebooks (userId string) SubNotebooks {
+	userNotebooks := []Notebook{}
 
 	database.Notebooks.Find(bson.M{"UserId": bson.ObjectIdHex(userId)}).All(&userNotebooks)
 
@@ -22,11 +22,11 @@ func (this *NotebookService) GetNotebooks (userId string) models.SubNotebooks {
 }
 
 
-func ParseAndSortNotebooks(userNotebooks []models.Notebook, noParentDelete, needSort bool) models.SubNotebooks {
-	userNotebooksMap := make(map[bson.ObjectId]*models.Notebooks, len(userNotebooks))
+func ParseAndSortNotebooks(userNotebooks []Notebook, noParentDelete, needSort bool) SubNotebooks {
+	userNotebooksMap := make(map[bson.ObjectId]*Notebooks, len(userNotebooks))
 
 	for _, each := range userNotebooks {
-		newNotebooks := models.Notebooks{Subs: models.SubNotebooks{}}
+		newNotebooks := Notebooks{Subs: SubNotebooks{}}
 		newNotebooks.NotebookId = each.NotebookId
 		newNotebooks.Title = each.Title
 		newNotebooks.UserId = each.UserId

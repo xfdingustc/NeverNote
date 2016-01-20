@@ -65,6 +65,8 @@ func Init(url, dbname string) {
 
 	Users = Session.DB(dbname).C("users")
 
+	Notebooks = Session.DB(dbname).C("notebooks")
+
 }
 
 

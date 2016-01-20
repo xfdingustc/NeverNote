@@ -5,6 +5,8 @@ import (
 	"github.com/xfdingustc/NeverNote/app/utils"
 	"github.com/xfdingustc/NeverNote/app/service"
 	"github.com/xfdingustc/NeverNote/app/database"
+	"encoding/json"
+"html/template"
 )
 
 func init() {
@@ -22,6 +24,16 @@ func init() {
 		revel.InterceptorFilter,       // Run interceptors around the action.
 		revel.CompressFilter,          // Compress the result.
 		revel.ActionInvoker,           // Invoke the action.
+	}
+
+	revel.TemplateFuncs["json"] = func(i interface{}) string {
+		b, _ := json.Marshal(i)
+		return string(b)
+	}
+
+	revel.TemplateFuncs["jsonJs"] = func(i interface{}) template.JS {
+		b, _ := json.Marshal(i)
+		return template.JS(string(b))
 	}
 
 	// register startup functions with OnAppStart
