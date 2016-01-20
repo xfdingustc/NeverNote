@@ -16,6 +16,7 @@ Notebook.getTreeSetting = function(isSearch, isShare) {
         switchObj.remove();
         icoObj.before(switchObj);
 
+
         if (!isShare) {
             if (!Notebook.isAllNotebookId(treeNode.NotebookId)) {
                 icoObj.after($('<span class="notebook-number-notes" id="numberNotes ' + treeNode.NotebookId +'">' + (treeNode.NumberNotes || 0) + '</span>'));
@@ -25,9 +26,22 @@ Notebook.getTreeSetting = function(isSearch, isShare) {
     }
     var setting = {
         view: {
-            addDiyDom: addDiyDom
+            showTitle: true,
+            showLine: false,
+            showIcon: false,
+            selectedMulti: false,
+            dblClickExpand: false,
+            //addDiyDom: addDiyDom
+        },
+        data: {
+            key: {
+                name: "Title",
+                children: "Sub",
+            }
         }
     };
+
+
 
     return setting;
 }
@@ -47,8 +61,7 @@ Notebook.renderNotebooks = function(notebooks) {
     notebooks = [
         {
             NotebookId: Notebook.allNotebookId,
-            Title: "all",
-
+            Title: getMsg("all"),
         }
     ].concat(notebooks)
 

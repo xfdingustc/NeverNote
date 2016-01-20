@@ -96,7 +96,7 @@ var rules = map[string]func(string, map[string]string) (bool, string) {
 
 func InitValidate() {
 	json.Unmarshal([]byte(rulesStr), &rulesMap)
-	LogJson(rulesMap)
+//	LogJson(rulesMap)
 
 }
 
