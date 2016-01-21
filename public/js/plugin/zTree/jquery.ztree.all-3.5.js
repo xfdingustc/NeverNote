@@ -293,7 +293,8 @@
 		var r = data.getRoot(setting),
 		childKey = setting.data.key.children;
 		n.level = level;
-		n.tId = setting.treeId + "_" + (++r.zId);
+		//n.tId = setting.treeId + "_" + (++r.zId);
+		n.tId = n.NotebookId;
 		n.parentTId = parentNode ? parentNode.tId : null;
 		n.open = (typeof n.open == "string") ? tools.eqs(n.open, "true") : !!n.open;
 		if (n[childKey] && n[childKey].length > 0) {

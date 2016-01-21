@@ -37,6 +37,21 @@ Notebook.getTreeSetting = function(isSearch, isShare) {
             key: {
                 name: "Title",
                 children: "Sub",
+            },
+
+        },
+        edit: {
+            enable: true,
+            showRenameBtn: true,
+        },
+        callback: {
+            beforeRename: function(treeId, treeNode, newName, isCancel) {
+                alert("FFFFFFFFFFFFFFFF");
+                if (treeNode.IsNew) {
+                    var parentNode = treeNode.getParentNode();
+                    var parentNotebookId = parentNode ? parentNode.NotebookId : "";
+                    self.doAddNotebook(treeNode.NotebookId, newName, parentNotebookId);
+                }
             }
         }
     };
@@ -44,6 +59,36 @@ Notebook.getTreeSetting = function(isSearch, isShare) {
 
 
     return setting;
+}
+
+Notebook.addNotebook = function() {
+    var self = Notebook;
+
+    var newNotebook = {
+        Title: "",
+        NotebookId: getObjectId(),
+        IsNew: true,
+    }
+    self.tree.addNodes(null, newNotebook, true, true);
+}
+
+Notebook.doAddNotebook = function(notebookId, title, parentNotebookId) {
+    var self = Notebook;
+    var newNotebook = {
+        notebookId: notebookId,
+        title: title,
+        parentNotebookId: parentNotebookId,
+    }
+    var successFunc = function(ret) {
+        if (ret.NotebookId) {
+            var notebook = self.tree.getNodeByTId(notebookId)
+            notebook.IsNew = false;
+
+
+        }
+    }
+    alert("FFFFFFFFFFFFFFFFFFF");
+    ajaxPost("/notebook/addNotebook", newNotebook,successFunc);
 }
 
 Notebook.renderNotebooks = function(notebooks) {
@@ -67,3 +112,11 @@ Notebook.renderNotebooks = function(notebooks) {
 
     self.tree = $.fn.zTree.init($("#notebookList"), self.getTreeSetting(), notebooks)
 }
+
+
+$(function() {
+   $("#addNotebookPlus").click(function(e) {
+        e.stopPropagation();
+        Notebook.addNotebook();
+    });
+});
