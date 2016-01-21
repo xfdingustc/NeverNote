@@ -42,11 +42,11 @@ Notebook.getTreeSetting = function(isSearch, isShare) {
         },
         edit: {
             enable: true,
-            showRenameBtn: true,
+            showRenameBtn: false,
+            showRemoveBtn: false,
         },
         callback: {
             beforeRename: function(treeId, treeNode, newName, isCancel) {
-                alert("FFFFFFFFFFFFFFFF");
                 if (treeNode.IsNew) {
                     var parentNode = treeNode.getParentNode();
                     var parentNotebookId = parentNode ? parentNode.NotebookId : "";
@@ -87,7 +87,6 @@ Notebook.doAddNotebook = function(notebookId, title, parentNotebookId) {
 
         }
     }
-    alert("FFFFFFFFFFFFFFFFFFF");
     ajaxPost("/notebook/addNotebook", newNotebook,successFunc);
 }
 

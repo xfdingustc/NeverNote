@@ -143,6 +143,9 @@
   padding: 0;
   background-color: #37485e;
 }
+.folderBody li {
+  line-height: 30px;
+}
 .folderHeader {
   min-height: 35px;
   line-height: 35px;
@@ -165,6 +168,19 @@
   border-right: 1px solid rgba(255, 255, 255, 0.05);
   text-align: center;
   color: #fff;
+}
+.ztree {
+  padding: 0px;
+}
+.ztree > li {
+  border-bottom: 1px solid transparent;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+.ztree li a:hover .notebook-setting {
+  display: block;
+}
+.ztree li a {
+  color: #ADBECE;
 }
 #logo,
 #switcher span {

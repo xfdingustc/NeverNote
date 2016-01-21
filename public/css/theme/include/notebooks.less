@@ -55,6 +55,10 @@
   background-color: @notebookBodyBgColor;
 }
 
+.folderBody li {
+  line-height: 30px;
+}
+
 .folderHeader {
   min-height: @folderHeaderHeight;
   line-height: @folderHeaderHeight;
@@ -78,4 +82,22 @@
   border-right: 1px solid @folderHeaderBorderColor;
   text-align: center;
   color: @folderHeaderIconColor;
+}
+
+.ztree {
+  padding: 0px;
+}
+
+.ztree > li {
+  border-bottom: 1px solid transparent;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.ztree li a:hover .notebook-setting {
+  display: block;
+
+}
+
+.ztree li a {
+  color: #ADBECE;
 }
