@@ -13,6 +13,7 @@ GET     /register                               Auth.Register
 POST    /doRegister                             Auth.DoRegister
 GET     /login                                  Auth.Login
 POST    /doLogin                                Auth.DoLogin
+POST    /
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

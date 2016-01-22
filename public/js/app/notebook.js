@@ -72,6 +72,16 @@ Notebook.addNotebook = function() {
     self.tree.addNodes(null, newNotebook, true, true);
 }
 
+Notebook.postAddNotebook = function(parentNotebookId) {
+    var newNotebook = {
+        parentNotebookId: parentNotebookId,
+    }
+    var successFunc = function(ret) {
+
+    }
+    ajaxPost("/notebook/addNotebook", newNotebook, successFunc);
+}
+
 Notebook.doAddNotebook = function(notebookId, title, parentNotebookId) {
     var self = Notebook;
     var newNotebook = {
@@ -116,6 +126,6 @@ Notebook.renderNotebooks = function(notebooks) {
 $(function() {
    $("#addNotebookPlus").click(function(e) {
         e.stopPropagation();
-        Notebook.addNotebook();
+        Notebook.postAddNotebook();
     });
 });

@@ -6,11 +6,32 @@ import (
 	"github.com/xfdingustc/NeverNote/app/models"
 	"strings"
 	"github.com/xfdingustc/NeverNote/app/service"
+	"gopkg.in/mgo.v2/bson"
 )
 
 
 type BaseController struct {
 	*revel.Controller
+}
+
+func (c BaseController) GetUserId() string {
+	if userId, ok := c.Session["UserId"]; ok {
+		return userId
+	}
+	return ""
+}
+
+func (c BaseController) HasLogined() bool {
+	return c.GetUserId() != ""
+}
+
+func (c BaseController) GetObjectUserId() bson.ObjectId {
+	userId := c.GetUserId()
+	if (userId != "") {
+		return bson.ObjectIdHex(userId)
+	}
+
+	return ""
 }
 
 func (c BaseController) SetLocale() string {
