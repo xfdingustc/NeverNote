@@ -48,6 +48,33 @@
   }
 }
 
+//.notebook-number-notes {
+//  position: absolute;
+//  right: 10px;
+//  top: 0;
+//  bottom: 0;
+//  z-index: 1;
+//  display: inline-block;
+//  line-height: 20px !important;
+//  height: 20px;
+//  margin-top: 5px;
+//  padding: 0 3px;
+//}
+
+.notebook-setting {
+  position: absolute;
+  right: 1px;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  line-height: 30px;
+  text-align: center;
+}
+
+.notebook-setting:before {
+  content: "\f013";
+}
+
 .folderBody {
   list-style: none;
   margin: 0;
@@ -89,8 +116,13 @@
 }
 
 .ztree > li {
+  height: 30px;
   border-bottom: 1px solid transparent;
   border-color: rgba(255, 255, 255, 0.05);
+}
+
+.ztree li span {
+  line-height: 30px;
 }
 
 .ztree li a:hover .notebook-setting {
@@ -100,4 +132,13 @@
 
 .ztree li a {
   color: #ADBECE;
+  background-color: transparent;
+  display: block;
+  position: relative;
+}
+
+.ztree li a.curSelectedNode {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  color: #fff;
 }

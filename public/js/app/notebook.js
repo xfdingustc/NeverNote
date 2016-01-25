@@ -20,8 +20,10 @@ Notebook.getTreeSetting = function(isSearch, isShare) {
         if (!isShare) {
             if (!Notebook.isAllNotebookId(treeNode.NotebookId)) {
                 icoObj.after($('<span class="notebook-number-notes" id="numberNotes ' + treeNode.NotebookId +'">' + (treeNode.NumberNotes || 0) + '</span>'));
-                icoObj.after($('<span class="fa notebook-setting" title="setting"></span>'))
+                icoObj.after($('<span class="fa notebook-setting" title="setting"></span>'));
             }
+        } else {
+            icoObj.after($('<span class="fa notebook-setting" title="setting"></span>'));
         }
     }
     var setting = {
@@ -31,7 +33,7 @@ Notebook.getTreeSetting = function(isSearch, isShare) {
             showIcon: false,
             selectedMulti: false,
             dblClickExpand: false,
-            //addDiyDom: addDiyDom
+            addDiyDom: addDiyDom
         },
         data: {
             key: {
@@ -125,9 +127,43 @@ Notebook.renderNotebooks = function(notebooks) {
 }
 
 
+Notebook.deleteNotebook = function(target) {
+
+}
+
 $(function() {
-   $("#addNotebookPlus").click(function(e) {
+   var notebookListMenu = {
+       width: 180,
+       items: [
+           {
+               type: "splitLine"
+           },
+           {
+               text: getMsg("delete"),
+               icon: "",
+               alias: 'delete',
+               faIcon: "fa-trash-o",
+               action: Notebook.deleteNotebook
+           }
+       ],
+       //onShow: applyrule,
+       parent: "#notebookList ",
+       children: "li a"
+   }
+
+    $("#addNotebookPlus").click(function(e) {
         e.stopPropagation();
         Notebook.postAddNotebook();
     });
+
+
+    Notebook.contextmenu = $("#notebookList li a").contextmenu(notebookListMenu);
+
+    $("#notebookList").on("click", ".notebook-setting", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $p = $(this).parent();
+        Notebook.contextmenu.showMenu(e, $p);
+    });
+
 });
