@@ -15,6 +15,8 @@ type Notebook struct {
 	CreatedTime			time.Time			`CreatedTime,omitempty`
 	UpdatedTime			time.Time			`UpdatedTime,omitempty`
 
+	IsDeleted			bool				`IsDeleted`
+
 }
 
 

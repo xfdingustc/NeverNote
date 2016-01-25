@@ -110,8 +110,9 @@ LEA.cmroot = 1;
                         (function(thisItem, tmp) {
 	                        $(tmp).click(function(e) {
 	                            if (!this.disable) {
-									// console.log(target);
+
 	                            	// 调用...
+
 	                                if ($.isFunction(actions[this.idx])) {
 	                                    actions[this.idx].call(this, target, thisItem);
 	                                }
@@ -221,6 +222,7 @@ LEA.cmroot = 1;
             // 先隐藏之前的
             hideMenuPane();
             removeContextmenuClass();
+
 
             target = menutarget;
             showMenuGroup.call(groups[cmroot], { left: e.pageX, top: e.pageY }, 0);

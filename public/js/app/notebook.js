@@ -63,16 +63,6 @@ Notebook.getTreeSetting = function(isSearch, isShare) {
     return setting;
 }
 
-Notebook.addNotebook = function() {
-    var self = Notebook;
-
-    var newNotebook = {
-        Title: "",
-        NotebookId: getObjectId(),
-        IsNew: true,
-    }
-    self.tree.addNodes(null, newNotebook, true, true);
-}
 
 Notebook.postAddNotebook = function(parentNotebookId) {
     var self = Notebook;
@@ -88,22 +78,35 @@ Notebook.postAddNotebook = function(parentNotebookId) {
     ajaxPost("/notebook/addNotebook", newNotebook, successFunc);
 }
 
-Notebook.doAddNotebook = function(notebookId, title, parentNotebookId) {
-    var self = Notebook;
-    var newNotebook = {
-        notebookId: notebookId,
-        title: title,
-        parentNotebookId: parentNotebookId,
-    }
-    var successFunc = function(ret) {
-        if (ret.NotebookId) {
-            var notebook = self.tree.getNodeByTId(notebookId)
-            notebook.IsNew = false;
-        }
-    }
-    ajaxPost("/notebook/addNotebook", newNotebook, successFunc);
-}
 
+Notebook.deleteNotebook = function(target) {
+    var self = Notebook;
+
+
+    var notebookId = $(target).attr("notebookId");
+    if (!notebookId) {
+        return;
+    }
+
+    var deletedNotebook = {
+        notebookId: notebookId,
+    };
+
+    var successFunc = function(ret) {
+        if (ret.Ok) {
+            console.log("Ok");
+            self.tree.removeNode(self.tree.getNodeByTId(notebookId));
+        } else {
+            console.log("not ok");
+        }
+    };
+
+    var failFunc = function(ret) {
+        console.log("faile");
+    }
+
+    ajaxGet("/notebook/DeleteNotebook", deletedNotebook, successFunc, failFunc);
+}
 Notebook.renderNotebooks = function(notebooks) {
     var self = this;
 
@@ -127,17 +130,12 @@ Notebook.renderNotebooks = function(notebooks) {
 }
 
 
-Notebook.deleteNotebook = function(target) {
 
-}
 
 $(function() {
    var notebookListMenu = {
        width: 180,
        items: [
-           {
-               type: "splitLine"
-           },
            {
                text: getMsg("delete"),
                icon: "",
@@ -146,10 +144,14 @@ $(function() {
                action: Notebook.deleteNotebook
            }
        ],
-       //onShow: applyrule,
+       onShow: applyrule,
        parent: "#notebookList ",
        children: "li a"
    }
+
+    function applyrule(menu) {
+
+    }
 
     $("#addNotebookPlus").click(function(e) {
         e.stopPropagation();

@@ -14,7 +14,7 @@ type NotebookService struct {
 func (this *NotebookService) GetNotebooks (userId string) SubNotebooks {
 	userNotebooks := []Notebook{}
 
-	database.Notebooks.Find(bson.M{"UserId": bson.ObjectIdHex(userId)}).All(&userNotebooks)
+	database.Notebooks.Find(bson.M{"UserId": bson.ObjectIdHex(userId), "IsDeleted": false}).All(&userNotebooks)
 
 	if len(userNotebooks) == 0 {
 		return nil
@@ -31,6 +31,7 @@ func (this *NotebookService) AddNotebook(notebook Notebook) (bool, Notebook) {
 	now := time.Now()
 	notebook.CreatedTime = now;
 	notebook.UpdatedTime = now;
+	notebook.IsDeleted = false;
 
 	utils.LogJson(notebook)
 
@@ -42,6 +43,26 @@ func (this *NotebookService) AddNotebook(notebook Notebook) (bool, Notebook) {
 	return true, notebook
 }
 
+
+func (this *NotebookService) DeleteNotebook(userId, notebookId string) (bool, string) {
+	if database.Count(database.Notebooks, bson.M{
+		"ParentNotebookId": bson.ObjectIdHex(notebookId),
+		"UserId": 			bson.ObjectIdHex(userId),
+		"IsDeleted":		false,
+	}) == 0 {
+		ok := database.UpdateByQMap(database.Notebooks, bson.M{
+			"_id": bson.ObjectIdHex(notebookId),
+		}, bson.M{
+			"IsDeleted": true,
+		})
+		return ok, ""
+
+		// There are notes in this notebook:
+		return false, "There are notes in this notebook"
+	} else {
+		return false, "There are sub notebooks in this notebook"
+	}
+}
 
 func ParseAndSortNotebooks(userNotebooks []Notebook, noParentDelete, needSort bool) SubNotebooks {
 	userNotebooksMap := make(map[bson.ObjectId]*Notebooks, len(userNotebooks))

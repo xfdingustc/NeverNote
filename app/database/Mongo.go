@@ -82,9 +82,22 @@ func Insert(collection *mgo.Collection, i interface{}) bool {
 	return Err(err)
 }
 
+func Count(collection *mgo.Collection, q interface{}) int {
+	cnt, err := collection.Find(q).Count()
+	if err != nil {
+		Err(err)
+	}
+	return cnt
+}
+
 
 func GetByQ(collection *mgo.Collection, q interface{}, i interface{}) {
 	collection.Find(q).One(i)
+}
+
+func UpdateByQMap(collection *mgo.Collection, q interface{}, v interface{}) bool {
+	_, err := collection.UpdateAll(q, bson.M{"$set": v})
+	return Err(err)
 }
 
 

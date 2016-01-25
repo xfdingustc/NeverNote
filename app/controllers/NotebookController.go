@@ -24,10 +24,16 @@ func (c Notebook) AddNotebook(parentNotebookId string) revel.Result {
 	ret, notebook := service.NotebookS.AddNotebook(notebook)
 
 	if ret {
-		utils.Log("true")
 		return c.RenderJson(notebook)
 	} else {
 		utils.Log("false")
 		return c.RenderJson(false)
 	}
+}
+
+func (c Notebook) DeleteNotebook(notebookId string) revel.Result {
+	ok, msg := service.NotebookS.DeleteNotebook(c.GetUserId(), notebookId);
+	utils.Log(ok)
+	utils.Log(msg)
+	return c.RenderJson(models.Response{Ok: ok, Msg: msg})
 }
