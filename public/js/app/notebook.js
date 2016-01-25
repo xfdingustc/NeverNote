@@ -73,11 +73,15 @@ Notebook.addNotebook = function() {
 }
 
 Notebook.postAddNotebook = function(parentNotebookId) {
+    var self = Notebook;
     var newNotebook = {
         parentNotebookId: parentNotebookId,
     }
     var successFunc = function(ret) {
-
+        if (ret.Title == "") {
+            ret.Title = "New Notebook";
+        }
+        self.tree.addNodes(null, ret, true, true);
     }
     ajaxPost("/notebook/addNotebook", newNotebook, successFunc);
 }
@@ -93,11 +97,9 @@ Notebook.doAddNotebook = function(notebookId, title, parentNotebookId) {
         if (ret.NotebookId) {
             var notebook = self.tree.getNodeByTId(notebookId)
             notebook.IsNew = false;
-
-
         }
     }
-    ajaxPost("/notebook/addNotebook", newNotebook,successFunc);
+    ajaxPost("/notebook/addNotebook", newNotebook, successFunc);
 }
 
 Notebook.renderNotebooks = function(notebooks) {
