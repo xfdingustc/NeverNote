@@ -37,3 +37,8 @@ func (c Notebook) DeleteNotebook(notebookId string) revel.Result {
 	utils.Log(msg)
 	return c.RenderJson(models.Response{Ok: ok, Msg: msg})
 }
+
+func (c Notebook) UpdateNotebookTitle(notebookId, title string) revel.Result {
+	userId := c.GetUserId()
+	return c.RenderJson(service.NotebookS.UpdateNotebookTitle(notebookId, userId, title));
+}

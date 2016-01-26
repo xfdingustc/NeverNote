@@ -64,6 +64,12 @@ func (this *NotebookService) DeleteNotebook(userId, notebookId string) (bool, st
 	}
 }
 
+func (this *NotebookService) UpdateNotebookTitle(notebookId, userId, title string) bool {
+	return database.UpdateByIdAndUserIdMap(database.Notebooks, notebookId, userId, bson.M{
+		"Title": title,
+	})
+}
+
 func ParseAndSortNotebooks(userNotebooks []Notebook, noParentDelete, needSort bool) SubNotebooks {
 	userNotebooksMap := make(map[bson.ObjectId]*Notebooks, len(userNotebooks))
 

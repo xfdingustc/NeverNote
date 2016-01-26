@@ -90,6 +90,14 @@ func Count(collection *mgo.Collection, q interface{}) int {
 	return cnt
 }
 
+func UpdateByIdAndUserIdMap(collection *mgo.Collection, id, userId string, v bson.M) bool {
+	return UpdateByIdAndUserId(collection, id, userId, bson.M{"$set": v})
+}
+
+func UpdateByIdAndUserId(collection *mgo.Collection, id, userId string, i interface{}) bool {
+	err := collection.Update(GetIdAndUserIdQ(id, userId),i)
+	return Err(err)
+}
 
 func GetByQ(collection *mgo.Collection, q interface{}, i interface{}) {
 	collection.Find(q).One(i)
@@ -112,4 +120,11 @@ func Err(err error) bool {
 		return false
 	}
 	return true
+}
+
+func GetIdAndUserIdQ(id, userId string) bson.M {
+	return bson.M{
+		"_id": bson.ObjectIdHex(id),
+		"UserId": bson.ObjectIdHex(userId),
+	}
 }

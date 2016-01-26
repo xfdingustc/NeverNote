@@ -9,6 +9,7 @@ Notebook.isAllNotebookId = function(notebookId) {
 }
 
 Notebook.getTreeSetting = function(isSearch, isShare) {
+    var self = Notebook;
     function addDiyDom(treeId, treeNode) {
         var spaceWidth = 5;
         var switchObj = $("#" + treeId + " #" + treeNode.tId + "_switch");
@@ -26,6 +27,16 @@ Notebook.getTreeSetting = function(isSearch, isShare) {
             icoObj.after($('<span class="fa notebook-setting" title="setting"></span>'));
         }
     }
+
+    if (!isShare) {
+        var onDblClick = function(e) {
+            var notebookId = $(e.target).attr("notebookId");
+            if (!Notebook.isAllNotebookId(notebookId)) {
+                self.updateNotebookTitle(e.target);
+            }
+        }
+    }
+
     var setting = {
         view: {
             showTitle: true,
@@ -48,12 +59,9 @@ Notebook.getTreeSetting = function(isSearch, isShare) {
             showRemoveBtn: false,
         },
         callback: {
+            onDblClick: onDblClick,
             beforeRename: function(treeId, treeNode, newName, isCancel) {
-                if (treeNode.IsNew) {
-                    var parentNode = treeNode.getParentNode();
-                    var parentNotebookId = parentNode ? parentNode.NotebookId : "";
-                    self.doAddNotebook(treeNode.NotebookId, newName, parentNotebookId);
-                }
+                self.doUpdateNotebookTitle(treeNode.NotebookId, newName);
             }
         }
     };
@@ -61,6 +69,28 @@ Notebook.getTreeSetting = function(isSearch, isShare) {
 
 
     return setting;
+}
+
+Notebook.updateNotebookTitle = function(target) {
+    var self = Notebook;
+
+    var notebookId = $(target).attr("notebookId");
+
+    self.tree.editName(self.tree.getNodeByTId(notebookId));
+}
+
+Notebook.doUpdateNotebookTitle = function(notebookId, newTitle) {
+    var self = Notebook;
+
+
+    ajaxPost("/notebook/updateNotebookTitle", {
+        notebookId: notebookId,
+        title: newTitle,
+    }, function(e) {
+        if (e.Ok) {
+
+        }
+    });
 }
 
 
